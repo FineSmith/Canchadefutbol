@@ -232,5 +232,6 @@ app.MapGet("/api/canchas", () =>
 });
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5206";
+var host = app.Environment.IsProduction() ? "0.0.0.0" : "localhost";
 
-app.Run($"http://localhost:{port}");
+app.Run($"http://{host}:{port}");
