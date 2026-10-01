@@ -31,3 +31,4 @@ D:\CanchaFutbol\obj\Debug\net10.0\refint\Semana07.dll
 D:\CanchaFutbol\obj\Debug\net10.0\Semana07.pdb
 D:\CanchaFutbol\obj\Debug\net10.0\Semana07.genruntimeconfig.cache
 D:\CanchaFutbol\obj\Debug\net10.0\ref\Semana07.dll
+D:\CanchaFutbol\bin\Debug\net10.0\Scalar.AspNetCore.dll

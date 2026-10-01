@@ -1,10 +1,42 @@
 var builder = WebApplication.CreateBuilder(args);
 
+// Agregar servicios
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
+builder.Services.AddOpenApi();
+
 var app = builder.Build();
+
+// Middleware
+app.UseCors("AllowAll");
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
 
 app.MapGet("/", () =>
 {
-    return "API Cancha de Fútbol funcionando";
+    return Results.Ok(new
+    {
+        mensaje = "API Cancha de Fútbol funcionando",
+        version = "1.0",
+        endpoints = new
+        {
+            horarios = "/api/horarios",
+            servicios = "/api/servicios",
+            canchas = "/api/canchas",
+            openapi = "/openapi/v1.json"
+        }
+    });
 });
 
 app.MapGet("/api/horarios", () =>
@@ -199,6 +231,6 @@ app.MapGet("/api/canchas", () =>
     });
 });
 
-var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5206";
 
-app.Run($"http://0.0.0.0:{port}");
+app.Run($"http://localhost:{port}");
